@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:each="book : ${books}">
+    <a th:href="@{/books/{id}(id=${book.id_book})}" th:text="${book.title} + ', '+ ${book.author} + ',' + ${book.year}">user</a>
+</div>
+
+<hr/>
+
+<form th:method="GET" th:action="@{/books/new}" th:object="${book}">
+    <input type="submit" value="Create book"/>
+</form>
+
+<form th:method="GET" th:action="@{/books}">
+    <button type="submit" th:name="sort_by_year" value="true">Sort</button>
+</form>
+
+<form th:method="GET" th:action="@{/books}">
+    <button type="submit" th:name="sort_by_year" value="false">Not sort</button>
+</form>
+
+<form th:method="GET" th:action="@{/people}">
+    <input type="submit" value="People"/>
+</form>
+
+<form th:method="GET" th:action="@{/books/search}">
+    <input type="submit" value="Search"/>
+</form>
+
+</body>
+</html>

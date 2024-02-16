@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:each="person : ${people}">
+    <a th:href="@{/people/{id}(id=${person.id_person})}" th:text="${person.name} + ', ' + ${person.year}">user</a>
+</div>
+
+<hr/>
+
+<form th:method="GET" th:action="@{/people/new}" th:object="${person}">
+    <input type="submit" value="Create Person"/>
+</form>
+
+<form th:method="GET" th:action="@{/books}">
+    <input type="submit" value="Books"/>
+</form>
+
+</body>
+</html>

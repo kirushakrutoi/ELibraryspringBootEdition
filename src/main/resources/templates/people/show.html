@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p th:text="${person.name} + ', ' + ${person.year}"></p>
+
+<div th:if="${books.empty}">
+    <div>Данный человек не взял ни одной книги</div>
+</div>
+
+
+<div th:unless="${books.empty}">
+    <hr/>
+    <span style="font-weight:bold">Книги</span>
+</div>
+
+<div th:each="book : ${books}" th:unless="${books.empty}">
+    <a th:href="@{/books/{id}(id=${book.id_book})}"
+            th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}"
+          th:style="${book.isOverdue()} ? 'color: red' : 'color: black'">
+                    book
+    </a>
+</div>
+<hr/>
+
+<form th:method="GET" th:action="@{/people/{id}/edit(id=${person.id_person})}" th:object="${person}">
+    <input type="submit" value="Edit Person"/>
+</form>
+
+<form th:method="Post" th:action="@{/people/{id}/delete(id=${person.id_person})}" th:object="${person}">
+    <input type="submit" value="Delete person"/>
+</form>
+
+</body>
+</html>
